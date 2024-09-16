@@ -16,10 +16,14 @@ def lb_read_questions():
 def lb_create_list(questions):
     new_test = input('WORD:TRADUCTION >>> ')
     if new_test.lower() != 'none' and new_test.lower() != 'exit':
-        new_word = new_test[0:new_test.index(':')]
-        new_trad = new_test[new_test.index(':') + 1:len(new_test)]
-        questions.update({f'{new_word}': f'{new_trad}'})
-        lb_create_list(questions)
+        if new_test.index(':'):
+            new_word = new_test[0:new_test.index(':')]
+            new_trad = new_test[new_test.index(':') + 1:len(new_test)]
+            questions.update({f'{new_word}': f'{new_trad}'})
+            lb_create_list(questions)
+        else:
+            print(f'Error: {new_test}')
+            lb_create_list(questions)
     else:
         save = input('Save questions ? [y/n] ')
         if save.lower() == 'y' or save.lower() == 'yes':
