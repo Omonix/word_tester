@@ -16,13 +16,9 @@ def lb_read_questions():
 def lb_create_list(questions):
     new_test = input('WORD:TRADUCTION >>> ')
     if new_test.lower() != 'none' and new_test.lower() != 'exit':
-        if new_test.index(':'):
             new_word = new_test[0:new_test.index(':')]
             new_trad = new_test[new_test.index(':') + 1:len(new_test)]
             questions.update({f'{new_word}': f'{new_trad}'})
-            lb_create_list(questions)
-        else:
-            print(f'Error: {new_test}')
             lb_create_list(questions)
     else:
         save = input('Save questions ? [y/n] ')
@@ -47,7 +43,7 @@ def lb_tester(questions):
             note += 1
         else:
             print('\033[1;31mIncorrect\033[0m')
-            result.append(f'\033[1;31m{lb_upper_0(element)} : {questions.get(element)}\033[0m')
+            result.append(f'\033[1;31m{lb_upper_0(element)} : {lb_upper_0(questions.get(element))}\033[0m')
         del evaluator[element]
         i += 1
     for i in result:
