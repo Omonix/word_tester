@@ -2,3 +2,14 @@ body {
     background-color: black;
     color: white;
 }
+.questionDiv {
+    display: flex;
+    align-items: center;
+}
+.whats {
+    margin-right: 1em;
+}
+.inputs {
+    display: flex;
+    flex-direction: column;
+}
