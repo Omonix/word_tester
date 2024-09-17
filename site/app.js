@@ -60,6 +60,7 @@ document.querySelector(".submit").addEventListener("click", () => {
   let arr_trueAnswer = [];
   for (let i = 0; i < document.querySelectorAll(".answer").length; i++) {
     arr_answer.push(document.querySelectorAll(".answer")[i].value);
+    document.querySelectorAll(".answer")[i].value = "";
   }
   arr_answer.forEach((e, i) => {
     let boolar = "";
@@ -74,7 +75,7 @@ document.querySelector(".submit").addEventListener("click", () => {
       )}`
     );
   });
-  console.log(lb_joinElement(arr_trueAnswer));
+  alert(lb_joinElement(arr_trueAnswer));
 });
 
 lb_tester(tab_info);
