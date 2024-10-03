@@ -36,7 +36,7 @@ def lb_tester(questions):
     while i < len(questions):
         x = math.floor(random.random() * len(evaluator))
         element = list(evaluator.keys())[x]
-        response = input(f'{element[0].upper() + element[1:len(element)].lower()} ? ')
+        response = input(f'{lb_upper_0(element)} ? ')
         if response == evaluator.get(element.lower()) and evaluator.get(element.lower()):
             print('\033[1;92mCorrect\033[0m')
             result.append(f'\033[1;92m{lb_upper_0(element)} : {lb_upper_0(questions.get(element))}\033[0m')
@@ -49,7 +49,27 @@ def lb_tester(questions):
     for i in result:
         print(i)
     print(f'\033[1;34m{note}/{len(questions)}\033[0m')
-    lb_defaulter()
+def lb_test_reverse(questions):
+    note = 0
+    evaluator = questions.copy()
+    result = ['\n']
+    i = 0
+    while i < len(questions):
+        x = math.floor(random.random() * len(evaluator))
+        element = list(evaluator.keys())[x]
+        response = input(f'{lb_upper_0(evaluator.get(element.lower()))} ? ')
+        if response == element and element:
+            print('\033[1;92mCorrect\033[0m')
+            result.append(f'\033[1;92m{lb_upper_0(questions.get(element))} : {lb_upper_0(element)}\033[0m')
+            note += 1
+        else:
+            print('\033[1;31mIncorrect\033[0m')
+            result.append(f'\033[1;31m{lb_upper_0(questions.get(element))} : {lb_upper_0(element)}\033[0m')
+        del evaluator[element]
+        i += 1
+    for i in result:
+        print(i)
+    print(f'\033[1;34m{note}/{len(questions)}\033[0m')
 def lb_defaulter():
     todo = input('>>> ')
     if todo == 'create':
@@ -57,6 +77,9 @@ def lb_defaulter():
         lb_defaulter()
     elif todo == 'test':
         lb_tester(lb_read_questions())
+        lb_defaulter()
+    elif todo == 'test reverse':
+        lb_test_reverse(lb_read_questions())
         lb_defaulter()
     elif todo == 'exit' or todo == 'quit' or todo == 'q':
         exit()
