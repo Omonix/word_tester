@@ -58,7 +58,7 @@ def lb_test_reverse(questions):
         x = math.floor(random.random() * len(evaluator))
         element = list(evaluator.keys())[x]
         response = input(f'{lb_upper_0(evaluator.get(element.lower()))} ? ')
-        if response == element and element:
+        if response == element.lower() and element:
             print('\033[1;92mCorrect\033[0m')
             result.append(f'\033[1;92m{lb_upper_0(questions.get(element))} : {lb_upper_0(element)}\033[0m')
             note += 1
